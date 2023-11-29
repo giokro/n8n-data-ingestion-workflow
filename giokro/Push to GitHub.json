@@ -1,0 +1,25 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2023-11-29T21:37:46.555Z",
+  "id": "cKLbJIXbjQ2HBhlg",
+  "meta": null,
+  "name": "Push to GitHub",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Github Trigger": {
+      "webhookId": 446046349,
+      "webhookEvents": [
+        "push"
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-29T21:55:48.000Z",
+  "versionId": "edf72455-b3c8-4824-9b15-36ccdb13f3f1"
+}
