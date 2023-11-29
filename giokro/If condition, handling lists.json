@@ -1,0 +1,396 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Rename Keys",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-27T21:43:43.587Z",
+  "id": "VT35W6JLtFFkYNGZ",
+  "meta": null,
+  "name": "If condition, handling lists",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "f39d5662-69c6-43ef-a024-db86d385adff",
+        "options": {}
+      },
+      "id": "fd4c31f4-5b20-442a-aabb-f71b6f0cbace",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        540
+      ],
+      "webhookId": "f39d5662-69c6-43ef-a024-db86d385adff"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook').item.json.query.custom_var }}",
+              "value2": "allowed"
+            }
+          ]
+        }
+      },
+      "id": "70cf8ee2-af86-43cc-9eea-49f801c9b491",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.AgAe }}",
+              "operation": "regex",
+              "value2": "17"
+            }
+          ]
+        }
+      },
+      "id": "7efa6dd1-258e-4c43-8b20-6c8a473f3977",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "value[1][0]"
+            },
+            {
+              "fieldToAggregate": "value[1][1]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5cf90157-5664-4741-a4e1-12579ce01c82",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1640,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "keys": {
+          "key": [
+            {
+              "currentKey": "Namea",
+              "newKey": "Saxeli"
+            }
+          ]
+        },
+        "additionalOptions": {}
+      },
+      "id": "42b79884-4b53-469f-b1cd-8a7bd05408fb",
+      "name": "Rename Keys",
+      "type": "n8n-nodes-base.renameKeys",
+      "typeVersion": 1,
+      "position": [
+        460,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "language",
+              "field2": "language"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5dc372f8-c81f-4190-a22f-a92dfb779adf",
+      "name": "Compare Datasets",
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        1080,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "e9aa0f33-8845-411e-990c-50c20dca88ed",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        480
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "Namea",
+              "stringValue": "Boris"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d9bcf75-5b51-4abe-8fed-e7901230b7c2",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        460,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\"Name\": \"Giorgi\", \"Surname\": \"Okroshidze\"}"
+      },
+      "id": "7cccb509-9c76-4288-b403-03df983901fa",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\"Name\": \"Giorgi\", \"Age\": 17} {\"Name\": \"Boris\", \"Age\": 20}, {\"Name\": \"Slavik\", \"Age\": 45},]"
+      },
+      "id": "d8d3cc86-b512-4b1e-901a-2aac0a14335b",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\"value\": [1, 5,6,7,8,88,99], \"language\": \"GE\"}"
+      },
+      "id": "6208da77-3fc6-42a7-81ac-41666dcc0df8",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor item in _input.all()\n\titem.json.myNewField = 1\nreturn _input.all()"
+      },
+      "id": "36ca5ca8-3ed5-4e0e-82c1-d4eca31031d8",
+      "name": "Code3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\"value\": [[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16], [17,18,19,20]]}"
+      },
+      "id": "a3bf1dc0-9496-4f2a-9268-e4e7090684cd",
+      "name": "Code4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "sADASDASDASD",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "a",
+              "outputKey": "out a"
+            },
+            {
+              "operation": "contains",
+              "value2": "b",
+              "outputKey": "out b"
+            },
+            {
+              "value2": "c",
+              "outputKey": "out c"
+            }
+          ]
+        }
+      },
+      "id": "5e7fc8d5-57b3-4e2e-ba47-d4b38a085f01",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        460,
+        620
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d2e921b5-199b-41d4-af8c-383e8cb11516",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "events": [
+          "update"
+        ]
+      },
+      "id": "ee811345-2837-4971-a420-cd2473c1ae29",
+      "name": "Active Workflow Updated Trigger",
+      "type": "n8n-nodes-base.workflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        1100
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "EMNW54u7fSeLf5QC"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2023-11-28T22:43:29.000Z",
+  "versionId": "68c7ce5c-391d-4712-a9f1-bd4c9d965528"
+}
