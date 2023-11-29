@@ -1,0 +1,344 @@
+{
+  "active": false,
+  "connections": {
+    "Form Trigger - Describe Our Automation": {
+      "main": [
+        [
+          {
+            "node": "Parse form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook - Request from local server": {
+      "main": [
+        [
+          {
+            "node": "Parse webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse error string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On active workflow updated": {
+      "main": [
+        [
+          {
+            "node": "Parse workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse webhook": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: enrich & create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse form": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: enrich & create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse error string": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: enrich & create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse workflow": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: enrich & create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram SecChannel Post Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Telegram Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Telegram Post": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: enrich & create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-27T21:43:12.105Z",
+  "id": "EMNW54u7fSeLf5QC",
+  "meta": null,
+  "name": "Data Ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contact Us!",
+        "formDescription": "Give us your input regarding our automation.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Years of SOC experience",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "What score do you give us?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1"
+                  },
+                  {
+                    "option": "2"
+                  },
+                  {
+                    "option": "3"
+                  },
+                  {
+                    "option": "4"
+                  },
+                  {
+                    "option": "5"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Briefly explain your experience",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "00d6fadc-751c-43ff-a4c4-b5fc75fc7858",
+      "name": "Form Trigger - Describe Our Automation",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        700
+      ],
+      "webhookId": "996b4762-8cd1-4c3b-9997-ca4d43486ea6"
+    },
+    {
+      "parameters": {
+        "path": "c6e34747-0dda-4cc9-b8f7-521b836c2f1d",
+        "options": {}
+      },
+      "id": "18020152-57f5-47ed-afdd-9e4ff0504c57",
+      "name": "Webhook - Request from local server",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        220,
+        340
+      ],
+      "webhookId": "c6e34747-0dda-4cc9-b8f7-521b836c2f1d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "798541aa-865a-46ba-9148-be3206babd7e",
+      "name": "Parse webhook",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "84827b60-80f1-4367-9971-dfedb7146cc1",
+      "name": "Parse form",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "b44ef5c5-0ef5-4169-a6aa-a7e25d0e3b2b",
+      "name": "Parse error string",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        880
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c80d06fc-96e3-45e4-9790-f0d24e940d76",
+      "name": "On Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "events": [
+          "update"
+        ]
+      },
+      "id": "e3dc27d2-6020-4420-aef5-5364e2c24850",
+      "name": "On active workflow updated",
+      "type": "n8n-nodes-base.workflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "7a2d20ea-cd94-456b-afc1-289797b2d84c",
+      "name": "Parse workflow",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "VT35W6JLtFFkYNGZ"
+      },
+      "id": "b8b9c56a-cc17-41f9-b8d1-02c19ebf2e74",
+      "name": "Sub-workflow: enrich & create ticket",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "channel_post"
+        ],
+        "additionalFields": {}
+      },
+      "id": "53fdd2f3-4ecc-4c16-a05d-2a2daa9d2d21",
+      "name": "Telegram SecChannel Post Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        520
+      ],
+      "webhookId": "eb6497b9-5a7d-4d2d-8a77-fc7a0c8cfcc1",
+      "credentials": {
+        "telegramApi": {
+          "id": "wNBxfEaGFaa6vrS3",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "87fbdce3-c841-4def-8328-96cbf65dd5d0",
+      "name": "Parse Telegram Post",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        520
+      ]
+    }
+  ],
+  "pinData": {
+    "On Error Trigger": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-28T23:20:54.000Z",
+  "versionId": "e98f33c1-7d26-4156-95cf-40bedf17b297"
+}
