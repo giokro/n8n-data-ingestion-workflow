@@ -1,0 +1,67 @@
+{
+  "active": true,
+  "connections": {
+    "Code1": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-28T00:32:32.580Z",
+  "id": "eKNETzjcw9FeKgZW",
+  "meta": null,
+  "name": "Will throw error",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return [{\"Name\": \"Giorgi\", \"Age\": 17} {\"Name\": \"Boris\", \"Age\": 20}, {\"Name\": \"Slavik\", \"Age\": 45},]"
+      },
+      "id": "ac16fa28-adc5-49e1-b0d4-33ae09cc70db",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "path": "a69b19fb-e4e9-49d3-8a5d-47fd8fd59474",
+        "options": {}
+      },
+      "id": "77e3352e-d1a4-4eec-9242-a3f3a14e627c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        640,
+        300
+      ],
+      "webhookId": "a69b19fb-e4e9-49d3-8a5d-47fd8fd59474"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "yZXK4RjYtygF64gQ"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-28T22:45:57.000Z",
+  "versionId": "61291aea-bea0-4e52-9dba-e11252823b44"
+}
