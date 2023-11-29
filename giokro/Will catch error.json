@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2023-11-28T00:33:12.961Z",
+  "id": "yZXK4RjYtygF64gQ",
+  "meta": null,
+  "name": "Will catch error",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7e4e4eff-4b09-44fa-974a-fb27b0a4621d",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        700,
+        260
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-28T22:28:00.000Z",
+  "versionId": "0ff87d75-07b7-419c-9ad8-45068a0e6c2f"
+}
