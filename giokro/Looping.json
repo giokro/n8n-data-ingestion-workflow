@@ -1,0 +1,117 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-27T21:44:01.790Z",
+  "id": "2c2ZXkPSAej6mqMe",
+  "meta": null,
+  "name": "Looping",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "699abac3-f7de-4217-a127-0bff880048bf",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// return {\"ip\": [\"8.8.8.8\",\"9.9.9.9\",\"10.10.10.10\",\"3.3.3.3\"]}\nlet data = [{\"ip\": \"8.8.8.8\"},{\"ip\": \"9.9.9.9\"},{\"ip\": \"10.10.10.10\"},{\"ip\": \"3.3.3.3\"}]\n// return {\"data\": JSON.stringify(data)}\nreturn data"
+      },
+      "id": "8a8b964d-c336-405a-8820-1fdb39963144",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\"data\": JSON.stringify($('Code').all())}"
+      },
+      "id": "e93f5227-6dab-4236-94fe-192fc5ac8464",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        480
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "batchSize": "={{ § }}",
+        "options": {}
+      },
+      "id": "2794f59d-f161-479b-9a54-c51c7dbab371",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        940,
+        460
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-27T21:44:01.790Z",
+  "versionId": "bd52ccdd-c2fb-4cbc-bb9a-abd384d73f0a"
+}
