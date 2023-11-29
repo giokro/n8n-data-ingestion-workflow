@@ -1,0 +1,181 @@
+{
+  "active": false,
+  "connections": {
+    "VirusTotal HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Parse VirusTotal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse out IPs": {
+      "main": [
+        [
+          {
+            "node": "VirusTotal HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse VirusTotal": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Sub-workflow: create ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse out IPs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-28T23:21:48.433Z",
+  "id": "zVEkUCbhOlw7tBdD",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "curlImport": "",
+        "httpVariantWarning": "",
+        "method": "GET",
+        "url": "=https://www.virustotal.com/api/v3/ip_addresses/{{ $json.ip }}",
+        "": "",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "virusTotalApi",
+        "sendQuery": false,
+        "sendHeaders": false,
+        "sendBody": false,
+        "options": {},
+        "infoMessage": ""
+      },
+      "id": "1cc98a0c-f804-4c93-95b8-497e6e8183b6",
+      "name": "VirusTotal HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        900,
+        500
+      ],
+      "extendsCredential": "virusTotalApi",
+      "credentials": {
+        "virusTotalApi": {
+          "id": "iecbRPcccaC2fP0E",
+          "name": "VirusTotal account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let inputData = $input.all();\nlet filteredData = [];\n\nfor (const item of $input.all()) {\n  try {\n    let temp = {};\n    temp.ip = item.json.data.id;\n    temp.lastAnalysisStats = item.json.data.attributes.last_analysis_stats;\n    \n    temp.malicious = false;\n    if(temp.lastAnalysisStats.malicious > 2 || temp.lastAnalysisStats.suspicious > 5) {\n      temp.malicious = true;\n    }\n    \n    filteredData.push(temp);\n  } catch (error) {\n    continue;\n  }\n}\n\nreturn filteredData;\n"
+      },
+      "id": "38d18b9c-4eb8-4599-8652-85cca5360a19",
+      "name": "Parse VirusTotal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        500
+      ],
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\"ip\": \"1.1.1.1\"}, {\"ip\": \"2.2.2.2\"}, {\"ip\": \"8.8.8.8\"}]"
+      },
+      "id": "a6cdcd24-2205-4b11-91ec-48978534bbd1",
+      "name": "Parse out IPs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        740,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.malicious }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "7b72f61d-8f26-44d1-9621-c21da90e9e96",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "zVEkUCbhOlw7tBdD"
+      },
+      "id": "79420299-8701-4452-bb1d-785942d66f90",
+      "name": "Sub-workflow: create ticket",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "path": "b913ba2a-03c0-4824-8394-4e5b1182ba74",
+        "options": {}
+      },
+      "id": "9ca7a039-8260-4d5a-ba33-00c709834d2e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        580,
+        500
+      ],
+      "webhookId": "b913ba2a-03c0-4824-8394-4e5b1182ba74"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-29T21:37:36.000Z",
+  "versionId": "889b6d02-d9eb-4eaa-83b3-903b862df27b"
+}
