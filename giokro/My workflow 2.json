@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -283,6 +283,7 @@
     },
     {
       "parameters": {
+        "authentication": "oAuth2",
         "resource": "file",
         "operation": "edit",
         "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
@@ -298,10 +299,17 @@
         1460,
         660
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "aOuU1NPwPplnAaYJ",
+          "name": "GitHub account"
+        }
+      }
     },
     {
       "parameters": {
+        "authentication": "oAuth2",
         "resource": "file",
         "owner": "={{$node[\"Globals\"].json[\"repo\"][\"owner\"]}}",
         "repository": "={{$node[\"Globals\"].json[\"repo\"][\"name\"]}}",
@@ -316,7 +324,13 @@
         1460,
         840
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "aOuU1NPwPplnAaYJ",
+          "name": "GitHub account"
+        }
+      }
     },
     {
       "parameters": {
@@ -476,7 +490,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2023-11-29T22:39:45.000Z",
-  "versionId": "00d852fb-436d-411c-aded-20e57f2d30f6"
+  "triggerCount": 1,
+  "updatedAt": "2023-11-29T23:53:38.000Z",
+  "versionId": "4d36ee20-88b5-415e-a473-0d3764edbcab"
 }
